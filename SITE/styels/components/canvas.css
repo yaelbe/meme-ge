@@ -1,0 +1,13 @@
+.canvas-container {
+  border: 1px solid black;
+  background-color: lightpink;
+  height: 50vh;
+  padding: 10px;
+}
+
+canvas {
+  background-color: inherit;
+  margin: auto;
+  border-radius: 0.5em;
+  border: 2px dashed black;
+}

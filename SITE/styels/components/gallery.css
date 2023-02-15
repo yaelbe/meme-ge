@@ -1,0 +1,50 @@
+.gallery {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.imgs {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 15px;
+  align-content: center;
+  align-items: center;
+  grid-column: 1/ -1;
+}
+
+.imgs .img {
+  flex: 1 1 200px;
+  width: minmax(200, 100%);
+  height: auto;
+  object-fit: cover;
+}
+
+.img-search {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  grid-column: 1;
+}
+
+.stat {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  align-content: center;
+  background-color: orange;
+  color: white;
+  font-family: 'lato-bold';
+  padding: 12px;
+}
+
+.stat-item {
+  height: 100%;
+}

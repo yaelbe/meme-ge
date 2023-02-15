@@ -1,0 +1,36 @@
+/* Main Layout */
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+  background-color: antiquewhite;
+  width: 100%;
+  margin: auto;
+}
+
+header {
+  background-color: chocolate;
+}
+.main-layout > .full {
+  grid-column: 1 / -1;
+}
+.main-layout > *:not(.full) {
+  grid-column: 2;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* card-layout */
+
+/* .card-layout {
+  display: grid;
+
+  grid-template-areas:
+    'i'
+    'h'
+    'p'
+    'b';
+} */

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="SITE/styels/style.css" />
+    <title>meme</title>
+  </head>
+  <body class="main-layout" onload="onLoad()">
+    <header class="full main-layout">
+      <div class="logo">Blogin</div>
+      <nav class="main-nav clean-list">
+        <ul class="main-menu clean-list flex">
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Memes</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main-content">
+      <div class="gallery"></div>
+      <div class="edit" hidden>
+        <div class="canvas-container">
+          <canvas width="800" height="800"></canvas>
+        </div>
+        <div class="tools-container"></div>
+      </div>
+    </main>
+    <script src="./SITE/js/main.js"></script>
+  </body>
+</html>
