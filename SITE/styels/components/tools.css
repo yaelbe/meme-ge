@@ -3,3 +3,8 @@
   background-color: aquamarine;
   height: 50vh;
 }
+
+.edit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
