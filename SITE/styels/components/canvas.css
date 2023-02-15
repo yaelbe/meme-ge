@@ -3,11 +3,13 @@
   background-color: lightpink;
   height: 50vh;
   padding: 10px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
 canvas {
   background-color: inherit;
-  margin: auto;
   border-radius: 0.5em;
   border: 2px dashed black;
 }

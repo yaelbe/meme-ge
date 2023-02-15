@@ -18,10 +18,10 @@ header {
   grid-column: 2;
 }
 
-.main-content {
+/* .main-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
+} */
 
 /* card-layout */
 
