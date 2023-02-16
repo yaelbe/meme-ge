@@ -1,6 +1,11 @@
 'use strict'
 var gLines = []
 var gCurrentLine
+
+function initCanvas() {
+  gElCanvas = document.querySelector('canvas')
+  gCtx = gElCanvas.getContext('2d')
+}
 function getLines() {
   return gLines
 }

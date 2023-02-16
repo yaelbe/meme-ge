@@ -8,18 +8,21 @@
     <title>meme</title>
   </head>
   <body class="main-layout" onload="onLoad()">
-    <header class="full main-layout">
-      <div class="logo">Blogin</div>
-      <nav class="main-nav clean-list">
+    <header class="main-header full main-layout">
+      <section class="nav flex space-between align-center">
+        <image class="logo"src="./SITE/assets/logo.svg"></image>
+      <nav class="main-nav clean-list flex">
         <ul class="main-menu clean-list flex">
           <li><a href="#" onclick="onShowGallery()">Gallery</a></li>
           <li><a href="#">Memes</a></li>
           <li><a href="#">About</a></li>
         </ul>
       </nav>
+      </section>
     </header>
-    <main class="main-content">
-      <div class="gallery"></div>
+    <main class="main-content main-layout full">
+      <div class="main-layout full gallery-header "></div>
+      <div class="gallery main-layout full"></div>
       <div class="edit hide">
         <div class="canvas-container">
           <canvas width="200" height="200"></canvas>
@@ -52,6 +55,13 @@
         </div>
       </div>
     </main>
+      <footer class="main-footer full">
+        <div class="footer-container flex align-center">
+        <image class="logo"src="./SITE/assets/logo.svg"></image>
+        <h2 class="footer-text">all rights reserved</h2>
+      </div>
+      </footer>
+    
 
     <script src="./SITE/js/services/util.service.js"></script>
     <script src="./SITE/js/services/gallery.service.js"></script>

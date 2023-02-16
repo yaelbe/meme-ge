@@ -1,0 +1,28 @@
+.main-layout .main-footer.full {
+  background-color: var(--clr02);
+  height: 200px;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: auto;
+}
+.main-footer {
+  display: flex;
+}
+
+/* .main-footer .footer-container > * {
+  margin-block-end: 2rem;
+} */
+.main-footer .footer-container {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  width: 135px;
+  height: 25px;
+}
+
+.footer-text {
+  font-size: 1.18em;
+}

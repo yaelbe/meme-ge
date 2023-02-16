@@ -1,6 +1,16 @@
 'use strict'
 var gLines = []
-function showEditor() {
+let gCtx
+let gElCanvas
+let gImage
+
+init()
+function init() {
+  gElCanvas = document.querySelector('canvas')
+  gCtx = gElCanvas.getContext('2d')
+}
+function showEditor(imageData) {
+  gImage = imageData
   addResizeListeners()
   let image = new Image()
   image.onload = function () {

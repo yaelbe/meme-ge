@@ -4,12 +4,14 @@
 html {
   color: #5a5959;
   font-family: main;
+  height: 100%;
 }
 
 body {
   font-size: 1rem;
   margin: 0;
   font-family: main;
+  height: 100%;
 }
 img {
   width: 100%;

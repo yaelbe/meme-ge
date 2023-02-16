@@ -1,7 +1,7 @@
 .gallery {
   grid-column: 1/-1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  background-color: var(--clr05);
+  padding: 20px 0;
 }
 
 .imgs {
@@ -21,27 +21,38 @@
   object-fit: cover;
 }
 
-.img-search {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-  grid-column: 1;
+.main-layout.gallery-header {
+  background-color: var(--clr01);
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-header .search {
+  display: flex;
+  grid-column: 2;
+  align-items: center;
+}
+
+.gallery-header .more {
+  grid-column: -1;
+  font-size: 0.6em;
+  color: var(--clr03);
+}
+
+.gallery-header .search .img-search {
+  border: none;
+  width: 30%;
 }
 
 .stat {
-  grid-column: 2;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  align-content: center;
-  background-color: orange;
-  color: white;
+  align-items: center;
+  background-color: var(--clr01);
+  color: var(--clr03);
   padding: 12px;
+  width: 100%;
+  height: 100px;
 }
 
 .stat-item {

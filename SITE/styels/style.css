@@ -2,12 +2,14 @@
 @import 'setup/vars.css';
 @import 'setup/typography.css';
 
-/* COMPONENTS */
-@import 'components/canvas.css';
-@import 'components/tools.css';
-@import 'components/gallery.css';
-
 /* BASICS */
 @import 'basics/base.css';
 @import 'basics/layout.css';
 @import 'basics/helpers.css';
+
+/* COMPONENTS */
+@import 'components/canvas.css';
+@import 'components/tools.css';
+@import 'components/gallery.css';
+@import 'components/header.css';
+@import 'components/footer.css';

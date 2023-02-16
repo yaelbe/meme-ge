@@ -1,6 +1,7 @@
 'use strict'
 
 var gImages = []
+createData()
 
 function createData() {
   let tags = ['art', ' happy', 'dark', 'funny', 'love', 'cute', 'music', 'kids', 'animals']

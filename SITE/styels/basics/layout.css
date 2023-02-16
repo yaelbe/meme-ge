@@ -2,15 +2,13 @@
 
 .main-layout {
   display: grid;
-  grid-template-columns: 20px 1fr 20px;
-  background-color: antiquewhite;
+  grid-template-columns: 45px 1fr 45px;
+  align-content: space-between;
   width: 100%;
   margin: auto;
+  background-color: var(--clr05);
 }
 
-header {
-  background-color: chocolate;
-}
 .main-layout > .full {
   grid-column: 1 / -1;
 }
