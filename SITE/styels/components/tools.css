@@ -1,10 +1,147 @@
 .tools-container {
   border: 1px solid black;
   background-color: aquamarine;
-  height: 50vh;
+  min-height: 500px;
+  padding: 2em;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 60px) auto;
+  gap: 0 20px;
+  /* align-items: center; */
+  justify-items: center;
 }
 
 .edit {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.tools-container input[type='text'] {
+  width: 100%;
+  padding: 0.8em;
+  border-radius: 0.25em;
+  font-size: 1.5em;
+  grid-column: 1/ -1;
+  height: 50px;
+}
+
+.btn-cta {
+  width: 40px;
+  height: 40px;
+  font-family: fa-solid;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 0.25em;
+  align-self: top;
+  text-align: center;
+}
+.btn-cta.large {
+  width: 80px;
+  font-size: 1em;
+  font-family: lato-bold;
+}
+
+.delete-btn {
+  grid-column: 4;
+  grid-row: 2;
+}
+.delete-btn::after {
+  content: '\f2ed';
+}
+
+.add-btn {
+  grid-column: 3;
+  grid-row: 2;
+}
+.add-btn::after {
+  content: '\2b';
+}
+
+.next-btn {
+  grid-column: 2;
+  grid-row: 2;
+}
+.next-btn::after {
+  content: '\f07d';
+}
+.font-up-btn {
+  grid-column: 1;
+  grid-row: 3;
+}
+.font-up-btn::after {
+  content: '\f424';
+}
+
+.font-down-btn {
+  grid-column: 2;
+  grid-row: 3;
+}
+.font-down-btn::after {
+  content: '\f422';
+}
+
+.left-btn {
+  grid-column: 3;
+  grid-row: 3;
+}
+.left-btn::after {
+  content: '\f036';
+}
+
+.center-btn {
+  grid-column: 4;
+  grid-row: 3;
+}
+.center-btn::after {
+  content: '\f037';
+}
+
+.right-btn {
+  grid-column: 5;
+  grid-row: 3;
+}
+.right-btn::after {
+  content: '\f038';
+}
+
+.color-btn {
+  grid-column: 5;
+  grid-row: 4;
+}
+.color-btn::after {
+  content: '\f53f';
+}
+
+.font-btn {
+  grid-column: 4;
+  grid-row: 4;
+}
+.font-btn::after {
+  content: '\41';
+}
+
+.impact {
+  grid-column: 1/ 4;
+  grid-row: 4;
+  width: 100%;
+  height: 40px;
+  font-size: 1.2em;
+  font-family: lato-bold;
+}
+
+.share-btn {
+  grid-column: 1/3;
+  grid-row: 5;
+  justify-self: left;
+  align-self: end;
+}
+
+.save-btn {
+  grid-column: 4/6;
+  grid-row: 5;
+  justify-self: right;
+  align-self: end;
 }

@@ -1,7 +1,6 @@
 .canvas-container {
   border: 1px solid black;
   background-color: lightpink;
-  height: 50vh;
   padding: 10px;
   display: grid;
   align-items: center;
