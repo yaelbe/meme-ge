@@ -6,9 +6,11 @@ function initCanvas() {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
 }
+
 function getLines() {
   return gLines
 }
+
 function getCurrentLine() {
   if (gLines.length === 0) {
     gCurrentLine = createLine()
@@ -16,15 +18,18 @@ function getCurrentLine() {
   gCurrentLine = gLines.at(-1)
   return gCurrentLine
 }
+
 function createLine() {
   const lastLine = gLines.at(-1)
   if (isCurrentEmptyLine()) {
     gCurrentLine = lastLine
   } else {
+    const centerX = gElCanvas.width / 2
+    const centerY = gElCanvas.height / 2
     let line = {
       id: makeId(),
       text: '',
-      position: {},
+      position: { x: centerX, y: centerY, w: 0, h: 0 },
       align: 'center',
       fontSize: 2,
       font: 'imp',
@@ -35,6 +40,26 @@ function createLine() {
     gCurrentLine = line
   }
   return gCurrentLine
+}
+
+function findLine(evX, evY) {
+  return gLines.find((line) => {
+    const { x, y, w, h } = line.position
+    const diffX = Math.abs(evX - x)
+    const diffY = Math.abs(evY - y)
+    if (diffX <= w / 2 && diffY <= h / 2) {
+      gCurrentLine = line
+      console.log('found 1')
+      return true
+    }
+    return false
+  })
+}
+
+function handelNewPosition(evX, evY, difX, difY) {
+  const { x, y, w, h } = gCurrentLine.position
+  // gCtx.strokeRect(x - (width * 1.5) / 2, y - lineHeight, width * 1.5, lineHeight * 1.5)
+  gCurrentLine.position = { x: evX, y: evY, w, h }
 }
 
 function deleteLine() {
