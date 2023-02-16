@@ -27,14 +27,17 @@ function onMouseDown(ev) {
   const found = findLine(x, y)
   console.log('found', found)
 
-  if (!found) return
+  if (!found) {
+    gCurrentLine = null
+    return
+  }
+
   gDragStart = true
   document.body.style.cursor = 'grabbing'
 }
 
 function onMouseUp(ev) {
   gDragStart = false
-  gCurrentLine = null
   document.body.style.cursor = 'default'
   renderCanvas()
 }

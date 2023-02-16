@@ -12,10 +12,6 @@ function getLines() {
 }
 
 function getCurrentLine() {
-  //   if (gLines.length === 0) {
-  //     gCurrentLine = createLine()
-  //   }
-  //   gCurrentLine = gLines.at(-1)
   return gCurrentLine
 }
 
@@ -56,7 +52,6 @@ function findLine(evX, evY) {
 
 function handelNewPosition(evX, evY, difX, difY) {
   const { x, y, w, h } = gCurrentLine.position
-  // gCtx.strokeRect(x - (width * 1.5) / 2, y - lineHeight, width * 1.5, lineHeight * 1.5)
   gCurrentLine.position = { x: evX, y: evY, w, h }
 }
 
@@ -114,4 +109,10 @@ function isCurrentEmptyLine() {
 
 function isEmptyLine(line) {
   return line && line.text.trim().length === 0
+}
+
+function doSave(newObject) {
+  let memes = loadFromStorage('memes') || []
+  memes.push(newObject)
+  saveToStorage('memes', memes)
 }

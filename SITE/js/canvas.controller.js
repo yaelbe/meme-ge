@@ -1,5 +1,4 @@
 'use strict'
-var gLines = []
 let gCtx
 let gElCanvas
 let gImage
@@ -162,9 +161,16 @@ function hideEditor() {
   removeResizeListener()
   document.querySelector('.edit').classList.add('hide')
 }
-
+function onSave() {
+  let meme = {
+    img: gImage,
+    lines: getLines(),
+    size: { w: gElCanvas.width, h: gElCanvas.height },
+  }
+  doSave(meme)
+}
 function _createLine() {
   const centerX = gElCanvas.width / 2
   const centerY = gElCanvas.height / 2
-  createLine(centerX, centerY)
+  return createLine(centerX, centerY)
 }

@@ -13,3 +13,9 @@ function onShowGallery() {
 function toggleMenu() {
   document.body.classList.toggle('menu-open')
 }
+
+function onShowMemes() {
+  hideEditor()
+  galleryHide()
+  showMemes()
+}
