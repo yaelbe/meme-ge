@@ -6,7 +6,6 @@ var gDragStart = false
 function addListeners() {
   addMouseListeners()
   addTouchListeners()
-  //   addKeyboardListeners()
 }
 
 function addMouseListeners() {

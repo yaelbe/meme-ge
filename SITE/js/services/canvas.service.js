@@ -12,20 +12,18 @@ function getLines() {
 }
 
 function getCurrentLine() {
-  if (gLines.length === 0) {
-    gCurrentLine = createLine()
-  }
-  gCurrentLine = gLines.at(-1)
+  //   if (gLines.length === 0) {
+  //     gCurrentLine = createLine()
+  //   }
+  //   gCurrentLine = gLines.at(-1)
   return gCurrentLine
 }
 
-function createLine() {
+function createLine(centerX, centerY) {
   const lastLine = gLines.at(-1)
   if (isCurrentEmptyLine()) {
     gCurrentLine = lastLine
   } else {
-    const centerX = gElCanvas.width / 2
-    const centerY = gElCanvas.height / 2
     let line = {
       id: makeId(),
       text: '',

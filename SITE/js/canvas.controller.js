@@ -90,7 +90,7 @@ function _getXPosition(align, width) {
 function onTextInput(text) {
   let line = getCurrentLine()
   if (!line) {
-    line = createLine()
+    line = _createLine()
   }
   line.text = text
   renderCanvas()
@@ -112,7 +112,7 @@ function onAddLine() {
   const elInput = document.querySelector(".tools-container input[type='text']")
   elInput.value = ''
   elInput.focus()
-  createLine()
+  _createLine()
 }
 
 function onAlign(direction) {
@@ -149,7 +149,7 @@ function onSave(elLink) {
 function onTypeEnd(ev, el) {
   if (ev.keyCode === 13) {
     el.value = ''
-    createLine()
+    _createLine()
     document.querySelector('.color-btn').value = '#ffffff'
   }
 }
@@ -161,4 +161,10 @@ function removeResizeListener() {
 function hideEditor() {
   removeResizeListener()
   document.querySelector('.edit').classList.add('hide')
+}
+
+function _createLine() {
+  const centerX = gElCanvas.width / 2
+  const centerY = gElCanvas.height / 2
+  createLine(centerX, centerY)
 }
