@@ -36,19 +36,33 @@ function renderCanvas() {
   gCtx.font = 'bold 18px Arial'
   gCtx.textAlign = 'center'
   const lineHeight = gCtx.measureText('M').width + 20
-  let centerX = gElCanvas.width / 2
   let topY = lineHeight
 
   getLines().forEach((line, index) => {
     if (line.text.length !== 0) {
-      let y = topY + lineHeight * index
       let width = gCtx.measureText(line.text).width
-      gCtx.fillText(line.text, centerX, y)
-      gCtx.setLineDash([6])
-      gCtx.strokeStyle = 'white'
-      gCtx.strokeRect(centerX - width / 2, y - lineHeight / 1.5, width, lineHeight)
+      let y = topY + lineHeight * index
+      let x = _getXPosition(line.align, width)
+
+      gCtx.fillText(line.text, x, y)
+      if (isCurrentLine(line.id)) {
+        gCtx.setLineDash([6])
+        gCtx.strokeStyle = 'white'
+        gCtx.strokeRect(x - width / 2, y - lineHeight / 1.5, width, lineHeight)
+      }
     }
   })
+}
+
+function _getXPosition(align, width) {
+  switch (align) {
+    case 'left':
+      return 0 + width
+    case 'right':
+      return gElCanvas.width - width
+    default:
+      return gElCanvas.width / 2
+  }
 }
 
 function onTextInput(text) {
@@ -61,6 +75,27 @@ function onTextInput(text) {
   renderCanvas()
 }
 
+function onDeleteLine() {
+  deleteLine()
+  renderCanvas()
+}
+
+function onNextLine() {
+  movetoNextLine()
+  renderCanvas()
+}
+
+function onAddLine() {
+  const elInput = document.querySelector(".tools-container input[type='text']")
+  elInput.value = ''
+  elInput.focus()
+  createLine()
+}
+
+function onAlign(direction) {
+  align(direction)
+  renderCanvas()
+}
 function onTypeEnd(ev, el) {
   if (ev.keyCode === 13) {
     el.value = ''
