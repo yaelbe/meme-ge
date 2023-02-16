@@ -30,22 +30,25 @@
           <button class="btn-cta add-btn" onclick="onAddLine()"></button>
           <button class="btn-cta next-btn" onclick="onNextLine()"></button>
 
-          <button class="btn-cta font-up-btn" onclick="onAddLine()"></button>
-          <button class="btn-cta font-down-btn" onclick="onAddLine()"></button>
+          <button class="btn-cta font-up-btn" onclick="onFontSizeChange('increase')"></button>
+          <button class="btn-cta font-down-btn" onclick="onFontSizeChange('decrease')"></button>
           <button class="btn-cta left-btn" onclick="onAlign('left')"></button>
           <button class="btn-cta center-btn" onclick="onAlign('center')"></button>
           <button class="btn-cta right-btn" onclick="onAlign('right')"></button>
 
-          <button class="btn-cta color-btn" onclick="onAddLine()"></button>
-          <button class="btn-cta font-btn" onclick="onAddLine()"></button>
-          <select name="impact" placeholder="impact" class="impact">
-            <option value="">Impact</option>
-            <option value="">Loto</option>
-            <option value="">eurofurence</option>
+          <input type="color" class="btn-cta color-btn" value = '#ffffff'
+          onchange="onFontColorChange(this.value)"></input>
+          <button class="btn-cta font-btn" onclick="onToggleStroke()"></button>
+          <select name="impact"  class="font-family" onchange="onFontChange(this.value)">
+            <option value="imp">Impact</option>
+            <option value="loto-bold">Loto</option>
+            <option value="eurofurence">Eurofurence</option>
           </select>
 
           <button class="btn-cta large share-btn" onclick="onAddLine()">Share</button>
-          <button class="btn-cta large save-btn" onclick="onAddLine()">Save</button>
+
+          <a href="#" class="btn-cta large save-btn" onclick="onSave(this)" download="my-img.jpg">Save</a>
+          <!-- <button class="btn-cta large save-btn" onclick="onAddLine()">Save</button> -->
         </div>
       </div>
     </main>

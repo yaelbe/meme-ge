@@ -3,24 +3,29 @@
 }
 html {
   color: #5a5959;
-  font-family: lato-regular;
+  font-family: main;
 }
 
 body {
   font-size: 1rem;
   margin: 0;
+  font-family: main;
 }
 img {
   width: 100%;
 }
 
-h1, h2, h3, h4, h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0 0 1em;
 }
 
 h2 {
   font-size: 1.75em;
-  font-family: lato-bold;
 }
 
 p {

@@ -13,6 +13,16 @@
   font-family: lato-regular;
   src: url(../../fonts/lato/Lato-Regular.ttf);
 }
+
+@font-face {
+  font-family: imp;
+  src: url(../../fonts/impact/impact.ttf);
+}
+
+@font-face {
+  font-family: main;
+  src: url(../../fonts/montserrat/Montserrat-Regular.ttf);
+}
 /* font awesome */
 @font-face {
   font-family: fa;
@@ -27,23 +37,3 @@
   font-family: fa-solid;
   src: url(../../fonts/fontAwesome/fa-solid-900.ttf);
 }
-
-/* .fa::before {
-  font-family: fa;
-}
-
-.fa.facebook::before {
-  content: "\f39e";
-}
-
-.fa.twitter::before {
-  content: "\f099";
-}
-
-.fa.dribble::before {
-  content: "\f17d";
-}
-
-.fa.behance::before {
-  content: "\f1b4";
-} */

@@ -5,6 +5,9 @@ function getLines() {
   return gLines
 }
 function getCurrentLine() {
+  if (gLines.length === 0) {
+    gCurrentLine = createLine()
+  }
   gCurrentLine = gLines.at(-1)
   return gCurrentLine
 }
@@ -18,6 +21,10 @@ function createLine() {
       text: '',
       position: {},
       align: 'center',
+      fontSize: 2,
+      font: 'imp',
+      color: '#ffffff',
+      stroke: false,
     }
     gLines.push(line)
     gCurrentLine = line
@@ -40,14 +47,43 @@ function movetoNextLine() {
   return gCurrentLine
 }
 
-function align(direction) {
-  gCurrentLine.align = direction
+function handleAlign(direction) {
+  _setLine('align', direction)
 }
 
+function handleFontSizeChange(direction) {
+  const fontSize = direction === 'increase' ? gCurrentLine.fontSize * 1.1 : gCurrentLine.fontSize / 1.1
+  _setLine('fontSize', fontSize)
+}
+
+function handleFontChange(fontFamily) {
+  _setLine('font', fontFamily)
+}
+
+function handleFontColor(color) {
+  _setLine('color', color)
+}
+
+function handleToggleStroke() {
+  _setLine('stroke', !gCurrentLine.stroke)
+}
+function handelSave() {
+  gCurrentLine = null
+}
 function isCurrentLine(id) {
+  if (!gCurrentLine) return
   return gCurrentLine.id === id
 }
 
+function _setLine(property, value) {
+  if (!gCurrentLine) return
+  gCurrentLine[property] = value
+}
+
 function isCurrentEmptyLine() {
-  return gCurrentLine && gCurrentLine.text.length === 0
+  return isEmptyLine(gCurrentLine)
+}
+
+function isEmptyLine(line) {
+  return line && line.text.trim().length === 0
 }

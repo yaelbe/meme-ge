@@ -37,11 +37,23 @@
   border-radius: 0.25em;
   align-self: top;
   text-align: center;
+  cursor: pointer;
 }
+
 .btn-cta.large {
   width: 80px;
   font-size: 1em;
-  font-family: lato-bold;
+  background: var(--clr13);
+  border: 1px solid var(--clr02);
+  color: var(--clr01);
+  cursor: pointer;
+  margin: 0 5px;
+  user-select: none;
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-decoration: none;
+  margin: 3px;
 }
 
 .delete-btn {
@@ -111,9 +123,11 @@
   grid-column: 5;
   grid-row: 4;
 }
-.color-btn::after {
+/* .color-btn::after {
   content: '\f53f';
-}
+  grid-row: 1;
+  grid-column: 1;
+} */
 
 .font-btn {
   grid-column: 4;
@@ -123,7 +137,7 @@
   content: '\41';
 }
 
-.impact {
+.font-family {
   grid-column: 1/ 4;
   grid-row: 4;
   width: 100%;

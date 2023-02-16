@@ -32,23 +32,38 @@ function renderCanvas() {
 
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 
-  gCtx.fillStyle = 'white'
-  gCtx.font = 'bold 18px Arial'
   gCtx.textAlign = 'center'
-  const lineHeight = gCtx.measureText('M').width + 20
-  let topY = lineHeight
-
   getLines().forEach((line, index) => {
-    if (line.text.length !== 0) {
+    if (!isEmptyLine(line)) {
+      const { font, fontSize: size, color } = line
+      gCtx.font = `${size}em ${font}`
+
+      const lineHeight = gCtx.measureText('M').width + 20
+      let topY = lineHeight
       let width = gCtx.measureText(line.text).width
-      let y = topY + lineHeight * index
+      let y = topY + Math.max(lineHeight * (index - 1) * 1.5, 0)
       let x = _getXPosition(line.align, width)
 
-      gCtx.fillText(line.text, x, y)
+      if (index === 1) {
+        //second line bottom
+        y = gElCanvas.height - lineHeight / 2
+      }
+
+      if (line.stroke) {
+        gCtx.strokeStyle = color
+        gCtx.lineWidth = size * 0.5
+        gCtx.strokeText(line.text, x, y)
+      } else {
+        gCtx.fillStyle = color
+        gCtx.lineWidth = 2
+        gCtx.strokeStyle = 'white'
+        gCtx.fillText(line.text, x, y)
+      }
+
       if (isCurrentLine(line.id)) {
         gCtx.setLineDash([6])
         gCtx.strokeStyle = 'white'
-        gCtx.strokeRect(x - width / 2, y - lineHeight / 1.5, width, lineHeight)
+        gCtx.strokeRect(x - (width * 1.5) / 2, y - lineHeight, width * 1.5, lineHeight * 1.5)
       }
     }
   })
@@ -57,16 +72,15 @@ function renderCanvas() {
 function _getXPosition(align, width) {
   switch (align) {
     case 'left':
-      return 0 + width
+      return 0 + (width / 2) * 1.5
     case 'right':
-      return gElCanvas.width - width
+      return gElCanvas.width - (width / 2) * 1.5
     default:
       return gElCanvas.width / 2
   }
 }
 
 function onTextInput(text) {
-  console.log(text)
   let line = getCurrentLine()
   if (!line) {
     line = createLine()
@@ -81,7 +95,9 @@ function onDeleteLine() {
 }
 
 function onNextLine() {
-  movetoNextLine()
+  const line = movetoNextLine()
+  if (!line) return
+  document.querySelector('.color-btn').value = line ? line.color : 'white'
   renderCanvas()
 }
 
@@ -93,13 +109,41 @@ function onAddLine() {
 }
 
 function onAlign(direction) {
-  align(direction)
+  handleAlign(direction)
   renderCanvas()
 }
+
+function onFontSizeChange(direction) {
+  handleFontSizeChange(direction)
+  renderCanvas()
+}
+
+function onFontColorChange(color) {
+  handleFontColor(color)
+  renderCanvas()
+}
+
+function onToggleStroke() {
+  handleToggleStroke()
+  renderCanvas()
+}
+function onFontChange(fontFamily) {
+  handleFontChange(fontFamily)
+  renderCanvas()
+}
+
+function onSave(elLink) {
+  handelSave()
+  renderCanvas()
+  var image = gElCanvas.toDataURL('image/jpeg')
+  elLink.setAttribute('href', image)
+}
+
 function onTypeEnd(ev, el) {
   if (ev.keyCode === 13) {
     el.value = ''
     createLine()
+    document.querySelector('.color-btn').value = '#ffffff'
   }
 }
 
