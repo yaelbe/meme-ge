@@ -18,7 +18,7 @@ function renderGallery() {
     let fontSize = keywordSearchCountMap[element] + 5 + 'px'
     html += `<div class="stats-item" style="font-size:${fontSize}">${element}</div>`
   }
-  html += '</div><a href="#" class="more" onclick="onShowMore()">more...</a></div>'
+  html += '<a href="#" class="more" onclick="onShowMore()">more...</a></div></div>'
   elGalleryHeader.innerHTML = html
   html = ''
 

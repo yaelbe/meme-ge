@@ -1,8 +1,6 @@
 .main-layout header {
   background-color: var(--clr02);
-  position: relative;
   color: var(--clr03);
-  z-index: 1;
   margin-top: auto;
 }
 
@@ -18,29 +16,6 @@
 } */
 .main-header .main-nav li {
   display: flex;
-}
-.main-header .main-nav li:not(:last-child):after {
-  content: '';
-  height: 50%;
-  width: 1px;
-
-  right: 0;
-  top: 20%;
-  position: relative;
-
-  background-color: var(--clr08);
-}
-
-.main-header .main-nav li:first-child::before {
-  content: '';
-  height: 50%;
-  width: 1px;
-
-  right: 0;
-  top: 20%;
-  position: relative;
-
-  background-color: var(--clr08);
 }
 
 .main-header .main-nav a {

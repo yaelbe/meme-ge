@@ -7,4 +7,9 @@ function onLoad() {
 function onShowGallery() {
   hideEditor()
   galleryShow()
+  toggleMenu()
+}
+
+function toggleMenu() {
+  document.body.classList.toggle('menu-open')
 }

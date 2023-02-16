@@ -1,7 +1,6 @@
 .canvas-container {
   display: grid;
   align-items: center;
-  justify-content: sta;
   min-width: 300px;
 }
 

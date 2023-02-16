@@ -8,16 +8,20 @@
     <title>meme</title>
   </head>
   <body class="main-layout" onload="onLoad()">
+    <div class="backdrop" onclick="toggleMenu()"></div>
+
     <header class="main-header full main-layout">
       <section class="nav flex space-between align-center">
         <image class="logo"src="./SITE/assets/logo.svg"></image>
-      <nav class="main-nav clean-list flex">
-        <ul class="main-menu clean-list flex">
-          <li><a href="#" onclick="onShowGallery()">Gallery</a></li>
-          <li><a href="#">Memes</a></li>
-          <li><a href="#">About</a></li>
-        </ul>
+        <nav class="main-nav clean-list flex">
+          <ul class="main-menu clean-list flex">
+            <image class="logo"src="./SITE/assets/logo.svg"></image>
+            <li><a href="#" onclick="onShowGallery()">Gallery</a></li>
+            <li><a href="#">Memes</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
       </nav>
+      <button type="button" class="header-btn hide" onclick="toggleMenu()">☰</button>
       </section>
     </header>
     <main class="main-content main-layout full">
@@ -46,6 +50,7 @@
             <option value="imp">Impact</option>
             <option value="loto-bold">Loto</option>
             <option value="eurofurence">Eurofurence</option>
+            <option value="fa">Funny</option>
           </select>
 
           <button class="btn-cta large share-btn" onclick="onAddLine()">Share</button>

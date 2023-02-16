@@ -6,6 +6,7 @@
 @import 'basics/base.css';
 @import 'basics/layout.css';
 @import 'basics/helpers.css';
+@import 'basics/backdrop.css';
 
 /* COMPONENTS */
 @import 'components/canvas.css';
@@ -13,3 +14,5 @@
 @import 'components/gallery.css';
 @import 'components/header.css';
 @import 'components/footer.css';
+
+@import 'setup/mq.css';
