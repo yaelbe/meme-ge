@@ -8,7 +8,9 @@ init()
 function init() {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
+  addListeners()
 }
+
 function showEditor(imageData) {
   gImage = imageData
   addResizeListeners()
@@ -45,19 +47,12 @@ function renderCanvas() {
   gCtx.textAlign = 'center'
   getLines().forEach((line, index) => {
     if (!isEmptyLine(line)) {
-      const { font, fontSize: size, color } = line
+      let { font, fontSize: size, color } = line
       gCtx.font = `${size}em ${font}`
 
       const lineHeight = gCtx.measureText('M').width + 20
-      let topY = lineHeight
       let width = gCtx.measureText(line.text).width
-      let y = topY + Math.max(lineHeight * (index - 1) * 1.5, 0)
-      let x = _getXPosition(line.align, width)
-
-      if (index === 1) {
-        //second line bottom
-        y = gElCanvas.height - lineHeight / 2
-      }
+      let { x, y } = line.position
 
       if (line.stroke) {
         gCtx.strokeStyle = color
@@ -69,6 +64,8 @@ function renderCanvas() {
         gCtx.strokeStyle = 'white'
         gCtx.fillText(line.text, x, y)
       }
+
+      line.position = { x, y, w: width, h: lineHeight }
 
       if (isCurrentLine(line.id)) {
         gCtx.setLineDash([6])
