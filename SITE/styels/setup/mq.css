@@ -1,4 +1,4 @@
-@media (max-width: 760px) {
+@media (max-width: 1000px) {
   .gallery-header .search {
     flex-direction: column;
   }
@@ -79,7 +79,7 @@
     transition: background-color 0.4s;
   }
 }
-@media (min-width: 760px) {
+@media (min-width: 1000px) {
   .main-header .main-menu > *:not(li) {
     display: none;
   }

@@ -1,10 +1,20 @@
 async function onUploadImg() {
   // Gets the canvas content as an image format
+  //   const dataUrl = gElCanvas.toDataURL()
+  //   const blob = await (await fetch(dataUrl)).blob()
+  //   const filesArray = [new File([blob], 'animation.png', { type: blob.type, lastModified: new Date().getTime() })]
+  //   const shareData = {
+  //     files: filesArray,
+  //   }
+  //   navigator.share(shareData).then(() => {
+  //     console.log('Shared successfully')
+  //   })
+
   if (navigator.canShare && navigator.canShare(shareData)) {
-    const dataUrl = gElCanvas.toDataURL('image/jpeg')
+    const dataUrl = gElCanvas.toDataURL()
     const blob = await (await fetch(dataUrl)).blob()
     const filesArray = [
-      new File([blob], 'meme.jpg', {
+      new File([blob], 'meme.png', {
         type: blob.type,
         lastModified: new Date().getTime(),
       }),

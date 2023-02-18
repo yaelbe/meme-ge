@@ -11,7 +11,7 @@
 
 .edit {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr 450px;
   background-color: var(--clr05);
   gap: 0;
   margin-top: 20px;
