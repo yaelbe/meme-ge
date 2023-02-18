@@ -7,11 +7,22 @@ init()
 function init() {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
-  addListeners()
 }
 
 function showEditor(imageData) {
-  gImage = imageData
+  if (imageData) {
+    reset()
+    gImage = imageData
+  }
+  if (!gImage) return
+  addListeners()
+  showCanvas()
+  document.querySelector('.edit').classList.remove('hide')
+  document.querySelector('.tools-container').classList.remove('hide')
+  document.querySelector('.memes').classList.add('hide')
+}
+
+function showCanvas() {
   addResizeListeners()
   let image = new Image()
   image.onload = function () {
@@ -19,7 +30,46 @@ function showEditor(imageData) {
     renderCanvas()
   }
   image.src = gImage.src
+}
+
+function showMemes() {
+  addResizeListeners()
+  renderMemes()
   document.querySelector('.edit').classList.remove('hide')
+  document.querySelector('.memes').classList.remove('hide')
+  document.querySelector('.edit .tools-container').classList.add('hide')
+}
+
+function renderMemes() {
+  const elMemes = document.querySelector('.memes')
+  const memems = getSavedMemes()
+  let html = ''
+
+  memems.forEach((meme) => {
+    html += `<img class="thumbnail" src=${meme.img} onclick="onRenderMeme('${meme.id}')">`
+  })
+  html += `<div class="flex width-100 space-between">
+  <button class="btn-cta large share-btn" onclick="showEditor()">Edit</button>
+  <a href="#" class="btn-cta large save-btn" onclick="onDownload(this)" download="my-img.jpg">Download</a>
+  </div>`
+
+  elMemes.innerHTML = html
+
+  const elContainer = document.querySelector('.canvas-container')
+
+  gElCanvas.width = elContainer.width - 25
+  gElCanvas.height = elContainer.height - 25
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+  gCtx.fillStyle = '#595959'
+  gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
+}
+
+function onRenderMeme(memeId) {
+  const meme = getMemeById(memeId)
+  gImage = meme.data
+  gElCanvas.width = meme.size.w
+  gElCanvas.height = meme.size.h
+  renderCanvas()
 }
 
 function addResizeListeners() {
@@ -27,9 +77,16 @@ function addResizeListeners() {
 }
 
 function renderCanvas() {
+  if (!gImage) return
   const elContainer = document.querySelector('.canvas-container')
-  const img = gImage.image
 
+  let img = gImage.image
+  if (!img.src) {
+    showCanvas(gImage)
+    return
+  }
+
+  const scale = (elContainer.offsetWidth - 25) / gElCanvas.width
   gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 
@@ -47,11 +104,14 @@ function renderCanvas() {
   getLines().forEach((line, index) => {
     if (!isEmptyLine(line)) {
       let { font, fontSize: size, color } = line
+      size = size * scale
       gCtx.font = `${size}em ${font}`
 
       const lineHeight = gCtx.measureText('M').width + 20
       let width = gCtx.measureText(line.text).width
       let { x, y } = line.position
+      x = x * scale
+      y = y * scale
 
       if (line.stroke) {
         gCtx.strokeStyle = color
@@ -138,7 +198,7 @@ function onFontChange(fontFamily) {
   renderCanvas()
 }
 
-function onSave(elLink) {
+function onDownload(elLink) {
   handelSave()
   renderCanvas()
   var image = gElCanvas.toDataURL('image/jpeg')
@@ -149,6 +209,7 @@ function onTypeEnd(ev, el) {
   if (ev.keyCode === 13) {
     el.value = ''
     _createLine()
+    renderCanvas()
     document.querySelector('.color-btn').value = '#ffffff'
   }
 }
@@ -159,16 +220,29 @@ function removeResizeListener() {
 
 function hideEditor() {
   removeResizeListener()
+  removeListeners()
   document.querySelector('.edit').classList.add('hide')
 }
 function onSave() {
+  handelSave()
+  renderCanvas()
+  resetTools()
   let meme = {
-    img: gImage,
+    img: gElCanvas.toDataURL(),
+    data: gImage,
     lines: getLines(),
     size: { w: gElCanvas.width, h: gElCanvas.height },
   }
   doSave(meme)
+  hideEditor()
+  showMemes()
 }
+
+function resetTools() {
+  document.querySelector('.color-btn').value = '#ffffff'
+  document.querySelector(".tools-container input[type='text']").value = ''
+}
+
 function _createLine() {
   const centerX = gElCanvas.width / 2
   const centerY = gElCanvas.height / 2

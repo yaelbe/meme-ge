@@ -112,7 +112,27 @@ function isEmptyLine(line) {
 }
 
 function doSave(newObject) {
+  newObject.id = makeId()
   let memes = loadFromStorage('memes') || []
   memes.push(newObject)
   saveToStorage('memes', memes)
+}
+
+function getSavedMemes() {
+  return loadFromStorage('memes') || []
+}
+
+function getMemeById(id) {
+  let meme = getSavedMemes().find((meme) => {
+    return meme.id === id
+  })
+  if (meme) {
+    gLines = meme.lines
+  }
+  return meme
+}
+
+function reset() {
+  gLines = []
+  gCurrentLine = null
 }

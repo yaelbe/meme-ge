@@ -4,6 +4,8 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 var gDragStart = false
 
 function addListeners() {
+  console.log('Add Listeners')
+
   addMouseListeners()
   addTouchListeners()
 }
@@ -19,6 +21,25 @@ function addTouchListeners() {
   gElCanvas.addEventListener('touchstart', onMouseDown)
   gElCanvas.addEventListener('touchmove', onMove)
   gElCanvas.addEventListener('touchend', onMouseUp)
+}
+
+function removeListeners() {
+  console.log('REmove Listeners')
+  removeMouseListeners()
+  removeTouchListeners()
+}
+
+function removeMouseListeners() {
+  gElCanvas.removeEventListener('mousedown', onMouseDown)
+  gElCanvas.removeEventListener('mousemove', onMove)
+  gElCanvas.removeEventListener('mouseup', onMouseUp)
+  gElCanvas.removeEventListener('mouseout', onMouseUp)
+}
+
+function removeTouchListeners() {
+  gElCanvas.removeEventListener('touchstart', onMouseDown)
+  gElCanvas.removeEventListener('touchmove', onMove)
+  gElCanvas.removeEventListener('touchend', onMouseUp)
 }
 
 function onMouseDown(ev) {
@@ -37,6 +58,7 @@ function onMouseDown(ev) {
 }
 
 function onMouseUp(ev) {
+  if (!gDragStart) return
   gDragStart = false
   document.body.style.cursor = 'default'
   renderCanvas()

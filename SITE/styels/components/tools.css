@@ -18,7 +18,8 @@
   margin-top: 20px;
 }
 
-.edit.hide {
+.edit.hide,
+.tools-container.hide {
   display: none;
 }
 
@@ -61,6 +62,14 @@
   border-radius: 3px;
   text-decoration: none;
   margin: 3px;
+}
+
+.btn-cta.large:hover {
+  background: var(--clr02);
+}
+
+.btn-cta.large:active {
+  color: var(--clr06);
 }
 
 .delete-btn {

@@ -7,7 +7,11 @@ function onLoad() {
 function onShowGallery() {
   hideEditor()
   galleryShow()
-  toggleMenu()
+  closeMenu()
+}
+
+function closeMenu() {
+  document.body.classList.remove('menu-open')
 }
 
 function toggleMenu() {
@@ -18,4 +22,5 @@ function onShowMemes() {
   hideEditor()
   galleryHide()
   showMemes()
+  closeMenu()
 }
