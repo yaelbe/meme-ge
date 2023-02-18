@@ -24,16 +24,18 @@ function showEditor(imageData) {
 
 function showCanvas() {
   addResizeListeners()
-  if (gImage.image) {
-    renderCanvas()
-    return
-  }
   let image = new Image()
   image.onload = function () {
     gImage.image = image
     renderCanvas()
   }
-  image.src = gImage.src
+  if (typeof gImage.src.src === 'undefined') {
+    image.src = gImage.src
+  } else {
+    //upload
+    image.src = gImage.src.src
+    gImage.src = image.src
+  }
 }
 
 function showMemes() {
@@ -91,7 +93,7 @@ function renderCanvas() {
   const elContainer = document.querySelector('.canvas-container')
 
   let img = gImage.image
-  if (!img.src) {
+  if (!gImage.hasOwnProperty('image')) {
     showCanvas(gImage)
     return
   }
@@ -123,6 +125,8 @@ function renderCanvas() {
       x = x * scale
       y = y * scale
 
+      x = _getXPosition(line.align, width, x)
+
       if (line.stroke) {
         gCtx.strokeStyle = color
         gCtx.lineWidth = size * 0.5
@@ -145,14 +149,16 @@ function renderCanvas() {
   })
 }
 
-function _getXPosition(align, width) {
+function _getXPosition(align, width, x) {
   switch (align) {
     case 'left':
       return 0 + (width / 2) * 1.5
     case 'right':
       return gElCanvas.width - (width / 2) * 1.5
-    default:
+    case 'center':
       return gElCanvas.width / 2
+    default:
+      return x
   }
 }
 
@@ -237,9 +243,6 @@ function onSave() {
   handelSave()
   renderCanvas()
   resetTools()
-  if (!gImage.src) {
-    gImage.src = gElCanvas.toDataURL()
-  }
   let meme = {
     image: gElCanvas.toDataURL(),
     data: gImage,

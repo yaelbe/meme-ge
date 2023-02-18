@@ -53,6 +53,7 @@ function findLine(evX, evY) {
 function handelNewPosition(evX, evY, difX, difY) {
   const { x, y, w, h } = gCurrentLine.position
   gCurrentLine.position = { x: evX, y: evY, w, h }
+  gCurrentLine.align = 'none'
 }
 
 function deleteLine() {
@@ -114,6 +115,12 @@ function isEmptyLine(line) {
 function doSave(newObject) {
   newObject.id = makeId()
   let memes = loadFromStorage('memes') || []
+  let oldMemeIndex = memes.findIndex((meme) => {
+    return meme.data.id === newObject.data.id
+  })
+  if ((oldMemeIndex) => 0) {
+    memes.splice(oldMemeIndex, 1)
+  }
   memes.push(newObject)
   saveToStorage('memes', memes)
 }
