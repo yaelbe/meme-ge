@@ -118,7 +118,7 @@ function doSave(newObject) {
   let oldMemeIndex = memes.findIndex((meme) => {
     return meme.data.id === newObject.data.id
   })
-  if ((oldMemeIndex) => 0) {
+  if (oldMemeIndex > -1) {
     memes.splice(oldMemeIndex, 1)
   }
   memes.push(newObject)
