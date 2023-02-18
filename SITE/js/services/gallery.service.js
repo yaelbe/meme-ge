@@ -19,7 +19,7 @@ function createData() {
   }
 }
 
-function createImageData(url, keyWords = []) {
+function createImageData(url = '', keyWords = []) {
   return {
     id: makeId(),
     src: url,

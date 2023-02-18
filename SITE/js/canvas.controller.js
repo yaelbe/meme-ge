@@ -24,6 +24,10 @@ function showEditor(imageData) {
 
 function showCanvas() {
   addResizeListeners()
+  if (gImage.image) {
+    renderCanvas()
+    return
+  }
   let image = new Image()
   image.onload = function () {
     gImage.image = image
@@ -46,11 +50,12 @@ function renderMemes() {
   let html = ''
 
   memems.forEach((meme) => {
-    html += `<img class="thumbnail" src=${meme.img} onclick="onRenderMeme('${meme.id}')">`
+    html += `<img class="thumbnail" src=${meme.image} onclick="onRenderMeme('${meme.id}')">`
   })
   html += `<div class="flex width-100 space-between">
-  <button class="btn-cta large share-btn" onclick="showEditor()">Edit</button>
+  <button class="btn-cta large edit-btn" onclick="showEditor()">Edit</button>
   <a href="#" class="btn-cta large save-btn" onclick="onDownload(this)" download="my-img.jpg">Download</a>
+  <button class="btn-cta large share-btn" onclick="onUploadImg()">Share</button>
   </div>`
 
   elMemes.innerHTML = html
@@ -67,9 +72,14 @@ function renderMemes() {
 function onRenderMeme(memeId) {
   const meme = getMemeById(memeId)
   gImage = meme.data
-  gElCanvas.width = meme.size.w
-  gElCanvas.height = meme.size.h
-  renderCanvas()
+  let image = new Image()
+  image.onload = function () {
+    gImage.image = image
+    gElCanvas.width = meme.size.w
+    gElCanvas.height = meme.size.h
+    renderCanvas()
+  }
+  image.src = meme.image
 }
 
 function addResizeListeners() {
@@ -227,8 +237,11 @@ function onSave() {
   handelSave()
   renderCanvas()
   resetTools()
+  if (!gImage.src) {
+    gImage.src = gElCanvas.toDataURL()
+  }
   let meme = {
-    img: gElCanvas.toDataURL(),
+    image: gElCanvas.toDataURL(),
     data: gImage,
     lines: getLines(),
     size: { w: gElCanvas.width, h: gElCanvas.height },

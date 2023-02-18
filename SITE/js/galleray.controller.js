@@ -23,6 +23,11 @@ function renderGallery() {
   html = ''
 
   html += `<div class="imgs">`
+  html += `<label name="imageChose" class="file-input btn-cta large">Upload
+  <input type="file" name="imageChose" onchange="onImgInput(event)" /></label>
+  `
+  // html += `<input type="file" class="file-input" name="image" onchange="onImgInput(event)" />
+  // `
   const images = getImagesForDisplay()
   images.forEach((image) => {
     html += `<img src=${image.src} class="img" onclick="onImageClicked('${image.id}')" >`

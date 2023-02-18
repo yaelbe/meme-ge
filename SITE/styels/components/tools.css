@@ -1,6 +1,5 @@
 .tools-container {
-  width: 360px;
-  height: 580px;
+  width: 440px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 60px) auto;
@@ -168,9 +167,20 @@
   justify-self: left;
   align-self: end;
 }
+.share-btn::before {
+  content: '\f39e';
+  font-family: fa;
+  padding: 0 4px;
+}
 
 .save-btn {
   grid-column: 4/6;
+  grid-row: 5;
+  justify-self: right;
+  align-self: end;
+}
+
+.download-btn {
   grid-row: 5;
   justify-self: right;
   align-self: end;

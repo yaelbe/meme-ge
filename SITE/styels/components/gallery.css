@@ -58,3 +58,8 @@
 .stat-item {
   height: 100%;
 }
+
+.file-input {
+  grid-column: 1/-1;
+  grid-row: 1;
+}
