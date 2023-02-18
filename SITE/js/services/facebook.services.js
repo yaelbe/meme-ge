@@ -1,15 +1,30 @@
-function onUploadImg() {
-  const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format
-
-  // A function to be called if request succeeds
-  function onSuccess(uploadedImgUrl) {
-    // Encode the instance of certain characters in the url
-    const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-    console.log(encodedUploadedImgUrl)
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+async function onUploadImg() {
+  // Gets the canvas content as an image format
+  if (navigator.canShare && navigator.canShare(shareData)) {
+    const dataUrl = gElCanvas.toDataURL('image/jpeg')
+    const blob = await (await fetch(dataUrl)).blob()
+    const filesArray = [
+      new File([blob], 'meme.jpg', {
+        type: blob.type,
+        lastModified: new Date().getTime(),
+      }),
+    ]
+    const shareData = {
+      files: filesArray,
+    }
+    navigator.share(shareData)
+  } else {
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+      // Encode the instance of certain characters in the url
+      const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+      console.log(encodedUploadedImgUrl)
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+    }
+    // Send the image to the server
+    doUploadImg(imgDataUrl, onSuccess)
   }
-  // Send the image to the server
-  doUploadImg(imgDataUrl, onSuccess)
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
