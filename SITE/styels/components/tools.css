@@ -1,5 +1,5 @@
 .tools-container {
-  width: 440px;
+  /* width: 440px; */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 60px) auto;
