@@ -128,6 +128,7 @@ function onTextInput(text) {
 
 function onDeleteLine() {
   deleteLine()
+  onLineSelected()
   renderCanvas()
 }
 
