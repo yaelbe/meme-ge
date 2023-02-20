@@ -1,5 +1,13 @@
-.tools-container {
-  /* width: 440px; */
+.edit {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: var(--clr05);
+  gap: 12px;
+  margin-top: 20px;
+  justify-items: center;
+}
+
+.tools-container__inner {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 60px) auto;
@@ -7,14 +15,7 @@
   justify-items: center;
   grid-column: 2;
   margin: auto;
-}
-
-.edit {
-  display: grid;
-  grid-template-columns: 1fr 450px;
-  background-color: var(--clr05);
-  gap: 0;
-  margin-top: 20px;
+  width: 440px;
 }
 
 .edit.hide,
@@ -22,7 +23,7 @@
   display: none;
 }
 
-.tools-container input[type='text'] {
+.tools-container__inner input[type='text'] {
   width: 100%;
   padding: 0.8em;
   border-radius: 0.25em;

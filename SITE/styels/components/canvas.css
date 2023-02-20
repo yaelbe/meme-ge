@@ -2,27 +2,17 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  min-width: 300px;
+  width: 100%;
+  max-width: 500px;
 }
 
 canvas {
   background-color: inherit;
   border-radius: 0.5em;
 }
-.memes {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin: 20px 0;
-}
+
 .thumbnail {
   width: 100px;
   height: auto;
   border-radius: 5px;
-}
-
-.memes.hide {
-  display: none;
 }

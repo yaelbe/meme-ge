@@ -29,7 +29,7 @@ function renderGallery() {
   // html += `<input type="file" class="file-input" name="image" onchange="onImgInput(event)" />
   // `
   const images = getImagesForDisplay()
-  images.forEach((image) => {
+  images.map((image) => {
     html += `<img src=${image.src} class="img" onclick="onImageClicked('${image.id}')" >`
   })
   html += '</div>'

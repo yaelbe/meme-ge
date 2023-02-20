@@ -1,12 +1,13 @@
-.main-layout .main-footer.full {
+.main-footer {
   background-color: var(--clr02);
+}
+
+.main-footer__inner {
   height: 200px;
   bottom: 0;
   width: 100%;
   justify-content: center;
   margin-bottom: auto;
-}
-.main-footer {
   display: flex;
 }
 
@@ -21,6 +22,10 @@
 .logo {
   width: 135px;
   height: 25px;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 .footer-text {

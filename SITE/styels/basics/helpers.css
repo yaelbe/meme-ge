@@ -4,12 +4,20 @@
   display: flex;
 }
 
+.flex.column {
+  flex-direction: column;
+}
+
 .flex.space-between {
   justify-content: space-between;
 }
 
 .flex.align-center {
   align-items: center;
+}
+
+.flex.justify-content {
+  justify-content: center;
 }
 
 /* list helpers */

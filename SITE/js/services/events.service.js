@@ -46,13 +46,14 @@ function onMouseDown(ev) {
   const pos = _getEvPos(ev)
   const { x, y } = pos
   const found = findLine(x, y)
-  console.log('found', found)
 
   if (!found) {
     gCurrentLine = null
+    renderCanvas()
+    onLineSelected()
     return
   }
-
+  onLineSelected()
   gDragStart = true
   document.body.style.cursor = 'grabbing'
 }

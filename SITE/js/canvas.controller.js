@@ -38,52 +38,6 @@ function showCanvas() {
   }
 }
 
-function showMemes() {
-  addResizeListeners()
-  renderMemes()
-  document.querySelector('.edit').classList.remove('hide')
-  document.querySelector('.memes').classList.remove('hide')
-  document.querySelector('.edit .tools-container').classList.add('hide')
-}
-
-function renderMemes() {
-  const elMemes = document.querySelector('.memes')
-  const memems = getSavedMemes()
-  let html = ''
-
-  memems.forEach((meme) => {
-    html += `<img class="thumbnail" src=${meme.image} onclick="onRenderMeme('${meme.id}')">`
-  })
-  html += `<div class="flex width-100 space-between">
-  <button class="btn-cta large edit-btn" onclick="showEditor()">Edit</button>
-  <a href="#" class="btn-cta large save-btn" onclick="onDownload(this)" download="my-img.jpg">Download</a>
-  <button class="btn-cta large share-btn" onclick="onUploadImg()">Share</button>
-  </div>`
-
-  elMemes.innerHTML = html
-
-  const elContainer = document.querySelector('.canvas-container')
-
-  gElCanvas.width = elContainer.width - 25
-  gElCanvas.height = elContainer.height - 25
-  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-  gCtx.fillStyle = '#595959'
-  gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
-}
-
-function onRenderMeme(memeId) {
-  const meme = getMemeById(memeId)
-  gImage = meme.data
-  let image = new Image()
-  image.onload = function () {
-    gImage.image = image
-    gElCanvas.width = meme.size.w
-    gElCanvas.height = meme.size.h
-    renderCanvas()
-  }
-  image.src = meme.image
-}
-
 function addResizeListeners() {
   window.addEventListener('resize', renderCanvas)
 }
@@ -98,7 +52,8 @@ function renderCanvas() {
     return
   }
 
-  const scale = (elContainer.offsetWidth - 25) / gElCanvas.width
+  let scale = 1 //(elContainer.offsetWidth - 25) / gElCanvas.width
+  if (gElCanvas.width < 1) scale = 1
   gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 
@@ -122,8 +77,8 @@ function renderCanvas() {
       const lineHeight = gCtx.measureText('M').width + 20
       let width = gCtx.measureText(line.text).width
       let { x, y } = line.position
-      x = x * scale
-      y = y * scale
+      x = x * scale > gElCanvas.width ? x : x * scale
+      y = y * scale > gElCanvas.height ? y : y * scale
 
       x = _getXPosition(line.align, width, x)
 
@@ -188,6 +143,25 @@ function onAddLine() {
   elInput.value = ''
   elInput.focus()
   _createLine()
+}
+
+function onLineSelected() {
+  const elInput = document.querySelector(".tools-container input[type='text']")
+  const elColor = document.querySelector('.color-btn')
+  const elFont = document.querySelector('.font-family')
+
+  elInput.focus()
+  const line = getCurrentLine()
+  if (line) {
+    elInput.value = line.text
+    elColor.value = line.color
+    elFont.value = line.font
+  } else {
+    elInput.value = ''
+    elColor.value = '#ffffff'
+    elFont.value = 'imp'
+  }
+  elInput.select()
 }
 
 function onAlign(direction) {

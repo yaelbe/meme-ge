@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,72 +8,102 @@
     <link rel="stylesheet" href="SITE/styels/style.css" />
     <title>meme</title>
   </head>
-  <body class="main-layout" onload="onLoad()">
+
+  <body class="main-container" onload="onLoad()">
+
     <div class="backdrop" onclick="toggleMenu()"></div>
-  
+
     <header class="main-header full main-layout">
       <section class="nav flex space-between align-center">
-        <image class="logo"src="./SITE/assets/logo.svg"></image>
+        <image class="logo" src="./SITE/assets/logo.svg"
+          onclick="onShowGallery()"></image>
         <nav class="main-nav clean-list flex">
           <ul class="main-menu clean-list flex">
-            <image class="logo"src="./SITE/assets/logo.svg"></image>
+            <image class="logo" src="./SITE/assets/logo.svg"></image>
             <li><a href="#" onclick="onShowGallery()">Gallery</a></li>
             <li><a href="#" onclick="onShowMemes()">Memes</a></li>
             <li><a href="#">About</a></li>
           </ul>
-      </nav>
-      <button type="button" class="header-btn hide" onclick="toggleMenu()">☰</button>
+        </nav>
+        <button type="button" class="header-btn hide"
+          onclick="toggleMenu()">☰</button>
       </section>
     </header>
-    <main class="main-content main-layout full">
-      <div class="main-layout full gallery-header "></div>
+    <main class="main-content flex-column">
+      <div class="main-layout full gallery-header"></div>
       <div class="gallery main-layout full"></div>
+      <div class="memes gallery main-layout full"></div>
       <div class="edit hide">
         <div class="canvas-container">
           <canvas width="200" height="200"></canvas>
         </div>
-        <div class ="memes"></div>
-        <div class="tools-container">
-          <input type="text" placeholder="your text here" onkeyup="onTextInput(this.value)" onkeydown="onTypeEnd(event, this)" />
-          <button class="btn-cta delete-btn" onclick="onDeleteLine()"></button>
-          <button class="btn-cta add-btn" onclick="onAddLine()"></button>
-          <button class="btn-cta next-btn" onclick="onNextLine()"></button>
 
-          <button class="btn-cta font-up-btn" onclick="onFontSizeChange('increase')"></button>
-          <button class="btn-cta font-down-btn" onclick="onFontSizeChange('decrease')"></button>
-          <button class="btn-cta left-btn" onclick="onAlign('left')"></button>
-          <button class="btn-cta center-btn" onclick="onAlign('center')"></button>
-          <button class="btn-cta right-btn" onclick="onAlign('right')"></button>
+        <div class="tools flex column space-between">
+          <section class="tools-container">
+            <div class="tools-container__inner">
 
-          <input type="color" class="btn-cta color-btn" value = '#ffffff'
-          onchange="onFontColorChange(this.value)"></input>
-          <button class="btn-cta font-btn" onclick="onToggleStroke()"></button>
-          <select name="impact"  class="font-family" onchange="onFontChange(this.value)">
-            <option value="imp">Impact</option>
-            <option value="loto-bold">Loto</option>
-            <option value="eurofurence">Eurofurence</option>
-            <option value="fa">Funny</option>
-          </select>
+              <input type="text" placeholder="your text here"
+                onkeyup="onTextInput(this.value)"
+                onkeydown="onTypeEnd(event, this)" />
+              <button class="btn-cta delete-btn"
+                onclick="onDeleteLine()"></button>
+              <button class="btn-cta add-btn" onclick="onAddLine()"></button>
+              <button class="btn-cta next-btn" onclick="onNextLine()"></button>
 
-          <button class="btn-cta large save-btn" onclick="onSave()">Save</button>
-          <button class="btn-cta large share-btn" onclick="onUploadImg()">Share</button>
-          <button class="btn-cta large save-btn" onclick="onSave()">Save</button>
-          <a href="#" class="btn-cta large download-btn" onclick="onDownload(this)" download="my-img.jpg">Download</a>
-          
+              <button class="btn-cta font-up-btn"
+                onclick="onFontSizeChange('increase')"></button>
+              <button class="btn-cta font-down-btn"
+                onclick="onFontSizeChange('decrease')"></button>
+              <button class="btn-cta left-btn"
+                onclick="onAlign('left')"></button>
+              <button class="btn-cta center-btn"
+                onclick="onAlign('center')"></button>
+              <button class="btn-cta right-btn"
+                onclick="onAlign('right')"></button>
+
+              <input type="color" class="btn-cta color-btn" value='#ffffff'
+                onchange="onFontColorChange(this.value)"></input>
+              <button class="btn-cta font-btn"
+                onclick="onToggleStroke()"></button>
+              <select name="impact" class="font-family"
+                onchange="onFontChange(this.value)">
+                <option value="imp">Impact</option>
+                <option value="loto-bold">Loto</option>
+                <option value="eurofurence">Eurofurence</option>
+                <option value="fa">Funny</option>
+              </select>
+
+
+          </section>
+          <section class="flex justify-content">
+            <button class="btn-cta large share-btn"
+              onclick="onUploadImg()">Share</button>
+            <button class="btn-cta large save-btn"
+              onclick="onSave()">Save</button>
+            <a href="#" class="btn-cta large download-btn"
+              onclick="onDownload(this)" download="my-img.jpg">Download</a>
+          </section>
+
           <!-- <button class="btn-cta large save-btn" onclick="onAddLine()">Save</button> -->
         </div>
       </div>
-    </main>
-      <footer class="main-footer full">
-        <div class="footer-container flex align-center">
-        <image class="logo"src="./SITE/assets/logo.svg"></image>
-        <h2 class="footer-text">all rights reserved</h2>
       </div>
-      </footer>
-    
+    </main>
+    <footer class="main-layout  main-footer full">
+      <div class="main-footer__inner">
+
+        <div class="footer-container flex align-center">
+          <img class="logo" src="./SITE/assets/logo.svg" />
+          <h2 class="footer-text">all rights reserved</h2>
+        </div>
+      </div>
+    </footer>
+
 
     <script src="./SITE/js/services/util.service.js"></script>
     <script src="./SITE/js/services/gallery.service.js"></script>
+    <script src="./SITE/js/meme.galleray.controller.js"></script>
+    <script src="./SITE/js/services/meme.galleray.service.js"></script>
     <script src="./SITE/js/galleray.controller.js"></script>
     <script src="./SITE/js/services/events.service.js"></script>
     <script src="./SITE/js/services/canvas.service.js"></script>
@@ -81,4 +112,5 @@
     <script src="./SITE/js/services/upload.services.js"></script>
     <script src="./SITE/js/main.js"></script>
   </body>
+
 </html>
